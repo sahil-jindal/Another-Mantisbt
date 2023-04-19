@@ -1,11 +1,12 @@
 package StepDefinitions;
 
+import com.mantis.POM.DriverLib;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class DeleteIssue {
-
 
 	@Given("User is on now on homepage")
 	public void user_is_on_now_on_homepage() {

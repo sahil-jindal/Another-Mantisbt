@@ -1,13 +1,10 @@
 package StepDefinitions;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import com.mantis.POM.DriverLib;
 import com.mantis.POM.POMLoginClass;
 
-import io.cucumber.java.After;
-import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
 
 public class Hooks {

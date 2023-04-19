@@ -42,7 +42,6 @@ public class ReportIssue {
 			try {
 				issueId = ri.createIssue(catog, repro, sever, prior, summary, description);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				System.out.println("Issue not created");
 			}
 		}

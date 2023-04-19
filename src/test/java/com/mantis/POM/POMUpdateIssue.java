@@ -51,7 +51,6 @@ public class POMUpdateIssue {
 
 //			System.out.println(id + " resolved");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			System.out.println("enter a valid id");
 		}
 

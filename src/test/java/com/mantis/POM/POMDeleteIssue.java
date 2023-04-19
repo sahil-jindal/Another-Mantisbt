@@ -32,7 +32,6 @@ public class POMDeleteIssue {
 			System.out.println(" issue id " + id + " deleted");
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			System.out.println("enter a valid id");
 		}
 
