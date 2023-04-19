@@ -42,6 +42,7 @@ public class ReportIssue {
 			try {
 				issueId = ri.createIssue(catog, repro, sever, prior, summary, description);
 			} catch (Exception e) {
+				// TODO Auto-generated catch block
 				System.out.println("Issue not created");
 			}
 		}
@@ -93,11 +94,19 @@ public class ReportIssue {
 			System.out.println("Home Page not reached");
 		}
 	}
-	@Then("validate on db")
-	public void validate_on_db() {
+	@Then("validate on db for values {string} and {string} and {string} and {string} and {string} and {string}")
+	public void validate_on_db_for_values( String catog,String repro,String sever, String prior,String summary, String description ) {
 		if(status)
 		{
-			
+			check = ri.validateDBIssue(issueId,catog,repro,sever,prior,summary,description);
+			if(check)
+			{
+				System.out.println("DB Values validated successfully");
+			}
+			else
+			{
+				System.out.println("DB Values doesnot match");
+			}
 		}
 		else
 		{

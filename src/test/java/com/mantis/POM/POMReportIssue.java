@@ -1,8 +1,14 @@
 package com.mantis.POM;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
+
+import com.mantisbt.jdbconn.DBConnection;
 
 public class POMReportIssue {
 
@@ -15,7 +21,6 @@ public class POMReportIssue {
 	By Priority = By.xpath("//*[@id=\"priority\"]");
 	By Summ = By.xpath("//*[@id=\"summary\"]");
 	By Desc = By.xpath("//*[@id=\"description\"]");
-	By uploadFile = By.xpath("//*[@id=\"report_bug_form\"]/div/div[2]/div[1]/div/table/tbody/tr[12]/td/div[2]/i");
 	By Submit = By.xpath("//*[@id=\"report_bug_form\"]/div/div[2]/div[2]/input");
 	By IssueCat = By.xpath(
 			"//div[@class='table-responsive'][1]/table/tbody//tr[@class='bug-header-data']//td[@class='bug-category']");
@@ -25,7 +30,18 @@ public class POMReportIssue {
 	By IssueSum = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-summary']");
 	By IssueDesc = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-description']");
 
+	
+	
 	WebDriver driver;
+	private static Statement st = null;
+	static {
+		 DBConnection dbConn = new DBConnection();
+		try {
+			st = dbConn.getConnection().createStatement();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public POMReportIssue(WebDriver driver) {
 		this.driver = driver;
@@ -41,7 +57,7 @@ public class POMReportIssue {
 
 	public boolean clickOnIssue(String issueId) {
 		try {
-			driver.findElement(By.linkText(issueId));
+			driver.findElement(By.linkText(issueId)).click();
 			return true;
 		} catch (Exception e) {
 
@@ -79,7 +95,7 @@ public class POMReportIssue {
 			match = false;
 			System.out.println("desc" + (driver.findElement(IssueDesc).getText()) + description);
 		}
-
+		System.out.println(match);
 		return match;
 	}
 
@@ -106,9 +122,6 @@ public class POMReportIssue {
 		driver.findElement(Desc).sendKeys(description);
 		Thread.sleep(1000);
 
-		driver.findElement(uploadFile).click();
-		Thread.sleep(3000);
-
 		driver.findElement(Submit).click();
 
 		Thread.sleep(1000);
@@ -119,4 +132,49 @@ public class POMReportIssue {
 		return driver.findElement(By.xpath("//*[@id=\"navbar-container\"]/div[2]/ul/li[3]/a/span")).isDisplayed();
 	}
 
+	public boolean validateDBIssue(String id , String catog, String repro, String sever, String prior, String summary,
+			String description) {
+		
+		IssueVariable iv = new IssueVariable();
+		boolean check = true;
+		ResultSet rs;
+		String query ="select * from mantis_bug_table where id="+Integer.parseInt(id);
+		String query1 = "select * from mantis_bug_text_table where id="+Integer.parseInt(id);
+		try {
+			rs=st.executeQuery(query);
+			
+			if(rs.next()) {
+				if(!rs.getString(22).contains(summary))
+					check=false;
+				if(!(rs.getInt(26) == iv.catog.get(catog)))
+					check=false;
+				if(!(rs.getInt(8) == iv.repro.get(repro)))
+					check=false;
+				if(!(rs.getInt(7) == iv.sever.get(sever)))
+					check=false;
+				if(!(rs.getInt(6) == iv.prior.get(prior)))
+					check=false;
+			}
+			else
+				check=false;
+			
+			rs=st.executeQuery(query1);
+			
+			if(rs.next()) {
+			     if(!rs.getString(2).contains(description))
+			    	 check=false;
+			}
+			else
+				check=false;
+			
+		} catch (SQLException e) {
+			
+			check = false;
+			e.printStackTrace();
+		}
+		
+		System.out.println(check);
+		
+		return check;
+	}
 }

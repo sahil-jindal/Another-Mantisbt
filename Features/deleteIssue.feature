@@ -16,7 +16,7 @@ Feature: Delete Feature
  @DI
 	Scenario: Validate delete issue
 		Given User is on now on homepage
-		When User click on view issues button
+		When User click on view issues button for delete
 		And User clicks on a issue id  "<issueId>" and click on delete button
 		Then User should reach on a delete issue page and click on delete 
 		And Issue has been deleted

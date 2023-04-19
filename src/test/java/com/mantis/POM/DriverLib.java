@@ -3,33 +3,32 @@ package com.mantis.POM;
 import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 
 public class DriverLib {
 
 	static WebDriver driver;
-
+	
+	
 	public WebDriver getWebDriver() {
-		WebDriver driver = DriverLib.driver;
-		if (driver == null) {
-			driver = startWebDriver();
-			DriverLib.driver = driver;
+		
+		if(driver==null) {
+		    driver = startWebDriver();
 		}
-
 		return driver;
 	}
 
 	private WebDriver startWebDriver() {
 		WebDriver driver;
-		ChromeOptions ops = new ChromeOptions();
-		ops.addArguments("--remote-allow-origins=*", "--start-maximized");
-		driver = new ChromeDriver(ops);
+		String URL="http://localhost/mantisbt/login_page.php";
+		EdgeOptions edgeOptions = new EdgeOptions();
+		edgeOptions.addArguments("--remote-allow-origins=*");
+		driver = new EdgeDriver(edgeOptions);
+		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		driver.get("http://localhost/mantisbt/login_page.php");
-
+		driver.get(URL);
 		return driver;
-
 	}
 
 }
