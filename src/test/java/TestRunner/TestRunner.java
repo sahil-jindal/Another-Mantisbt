@@ -9,6 +9,6 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
 	features = "Features",
 	glue = "StepDefinitions",
-	tags = "@deleteIssue"
+	tags = "@DeleteIssue"
 )
 public class TestRunner extends AbstractTestNGCucumberTests {}

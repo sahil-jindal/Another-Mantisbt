@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="2" passed="1" failed="1" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-04-20T17:36:01 IST" name="Default suite" finished-at="2023-04-20T17:36:52 IST" duration-ms="51225">
+    <groups>
+      <group name="cucumber">
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:TestRunner.TestRunner@25ce9dc4]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+      </group> <!-- cucumber -->
+    </groups>
+    <test started-at="2023-04-20T17:36:01 IST" name="Default test" finished-at="2023-04-20T17:36:52 IST" duration-ms="51225">
+      <class name="TestRunner.TestRunner">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:TestRunner.TestRunner@25ce9dc4]" started-at="2023-04-20T17:36:01 IST" name="setUpClass" finished-at="2023-04-20T17:36:08 IST" duration-ms="6650" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@2b7facc7]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpClass -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:TestRunner.TestRunner@25ce9dc4]" started-at="2023-04-20T17:36:08 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-04-20T17:36:35 IST" duration-ms="26776" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Validate delete issue"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Delete Feature"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:TestRunner.TestRunner@25ce9dc4]" started-at="2023-04-20T17:36:35 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-04-20T17:36:52 IST" duration-ms="17364" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Validate delete issue"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Delete Feature"]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Exception in create Issue of Update Issue]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Exception in create Issue of Update Issue
+at org.testng.Assert.fail(Assert.java:110)
+at StepDefinitions.DeleteIssue.user_creates_an_issue_for_delete_with_values(DeleteIssue.java:58)
+at ✽.User creates an issue for delete with values "[All Projects] Selenium" "random" "trial" "low" "not able to login" "description"(file:///C:/Users/sahildjindal/Documents/SDET%20Learning/GroupProject1/groupone/Features/C)deleteIssue.feature:19)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.TestRunner@25ce9dc4]" started-at="2023-04-20T17:36:52 IST" name="tearDownClass" finished-at="2023-04-20T17:36:52 IST" duration-ms="9" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownClass -->
+      </class> <!-- TestRunner.TestRunner -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
