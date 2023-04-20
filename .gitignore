@@ -4,9 +4,6 @@
 #     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
 
 # Eclipse files
-.settings
-.project
-.classpath
 test-output/
 
 # VS Code files
