@@ -16,7 +16,8 @@ public class ReportIssue {
 	DriverLib driverLib = new DriverLib();
 	WebDriver driver = driverLib.getWebDriver();
 	POMReportIssue ri = new POMReportIssue(driver);
-
+	String[] reqSummary = new String[4];
+	
 	@Given("user is on homepage")
 	public void user_is_on_homepage() {
 	    status = ri.checkHomePage();
@@ -37,6 +38,9 @@ public class ReportIssue {
 	}
 	@When("user enter the issue details as {string} and {string} and {string} and {string} and {string} and {string} click on Submit issue")
 	public void user_enter_the_issue_details_as_and_and_and_and_and_click_on_submit_issue(String catog,String repro,String sever, String prior,String summary, String description ) {
+		
+		reqSummary = ri.fetchSummaryDetails(sever , catog);
+		ri.goToReportIssuePage();
 		if(status)
 		{
 			try {
@@ -115,8 +119,25 @@ public class ReportIssue {
 	}
 
 
-
-
+	@Then("validate on summary page {string} and {string}")
+	public void validate_on_summary_page(String sever , String catog) {
+		if(status)
+		{
+			check = ri.validateSummary( sever , catog );
+			if(check)
+			{
+				System.out.println("Summary Values validated successfully");
+			}
+			else
+			{
+				System.out.println("Summary Values doesnot match");
+			}
+		}
+		else
+		{
+			System.out.println("Home Page not reached");
+		}	    
+	}
 
 
 }

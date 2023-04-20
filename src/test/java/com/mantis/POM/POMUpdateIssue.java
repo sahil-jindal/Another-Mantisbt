@@ -15,7 +15,7 @@ public class POMUpdateIssue {
 
 	By ReportIssueButton = By.xpath("//*[@id=\"sidebar\"]/ul/li[3]/a/span");
 	By ViewIssueButton = By.xpath("//*[@id=\"sidebar\"]/ul/li[2]/a/span");
-
+	By SummaryButton = By.xpath("//*[@id=\"sidebar\"]/ul/li[6]/a/span");
 	By viewissuebutton = By.xpath("//*[@id=\"sidebar\"]/ul/li[2]/a/i");
 	By editButton = By.xpath("//input[@type='submit'][@value='Edit']");
 	By status = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-status']/select");
@@ -24,6 +24,14 @@ public class POMUpdateIssue {
 	By newStatus = By.xpath("//*[@id=\"history\"]/div[2]/div/div/table/tbody/tr[last()-1]/td[last()]");
 	By IssueStat = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-status']");
 	By IssueRes = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-resolution']");
+	String summarySeverity = "//th[contains(text(),'By Severity')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'";
+    String summaryStatus = "//th[contains(text(),'By Status')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'";
+    String summaryCategory = "//th[contains(text(),'By Category')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'";
+	String traverse = "')]/parent::tr/td[5]";
+	By SummaryProject = By.xpath("//th[contains(text(),'By Project')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'Automation')]/parent::tr/td[5]");
+	
+	
+    String[] reqSummary = new String[4];
 
 
 	WebDriver driver;
@@ -149,4 +157,55 @@ public class POMUpdateIssue {
 	
 	    return check;	
 	}
+
+public void fetchSummaryDetails(String sever , String catog , String statusc) {
+    	
+    	
+    	
+    	try {
+    	
+    	driver.findElement(SummaryButton).click();
+
+    	System.out.println("check fetch");
+    	reqSummary[0] = driver.findElement(SummaryProject).getText();
+    	reqSummary[1] = driver.findElement(By.xpath(summaryStatus+statusc+traverse)).getText();
+    	reqSummary[2] = driver.findElement(By.xpath(summarySeverity+sever+traverse)).getText();
+    	reqSummary[3] = driver.findElement(By.xpath(summaryCategory+catog.split(" ")[2]+traverse)).getText();
+    	
+    	}
+    	catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    	
+    	
+    }
+	
+	 public boolean validateSummary(String sever, String catog , String statusc) {
+
+	    	boolean status = true;
+	    	
+	    	try {
+	    	
+	    	driver.findElement(SummaryButton).click();
+
+	    	System.out.println(Integer.toString(Integer.parseInt(reqSummary[0])+1));
+	    	if(!driver.findElement(SummaryProject).getText().equals(Integer.toString(Integer.parseInt(reqSummary[0])+1)))
+	    		status=false;
+
+	    	if(!driver.findElement(By.xpath(summaryStatus+statusc+traverse)).getText().equals(Integer.toString(Integer.parseInt(reqSummary[1])+1)))
+	    		status=false;
+	    	if(!driver.findElement(By.xpath(summarySeverity+sever+traverse)).getText().equals(Integer.toString(Integer.parseInt(reqSummary[2])+1)))
+	    		status=false;
+	    	
+	    	if(!driver.findElement(By.xpath(summaryCategory+catog.split(" ")[2]+traverse)).getText().equals(Integer.toString(Integer.parseInt(reqSummary[3])+1)))
+	    		status=false;
+	    	}
+	    	catch(Exception e) {
+	    		status=false;
+	    		e.printStackTrace();
+	    	}
+	    	
+	    	return status;
+	    }
+	
 }

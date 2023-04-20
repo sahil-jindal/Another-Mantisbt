@@ -23,13 +23,7 @@ public class POMLoginClass {
 		driver.findElement(SUBMIT).click();
 		return driver;
 	}
-	
-	public void checkDefaultLoginValue()
-	{
-		String strUN = driver.findElement(UN).getText();
-		String strPWD = driver.findElement(PWD).getText();
-	}
-	
+
 	public void clearLoginValues()
 	{
 		driver.findElement(UN).clear();
