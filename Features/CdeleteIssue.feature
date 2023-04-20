@@ -8,24 +8,20 @@ Feature: Delete Feature
 #	  And user enter password as "<password>" and click on login
 #	  Then user should be able to login successfully
 #	  And user should be able to navigate to home page
-  #
-    #Examples: 
-      #| username  	  | password |
-      #| administrator | root 		 |
+#
+#		Examples: 
+#			| username  	  | password |
+#			| administrator | root 	   |
 
  @DI
 	Scenario: Validate delete issue
 		Given User is on now on homepage
-		And User creates an issue for delete with values "<category>" "<reproducibility>" "<severity>" "<priority>" "<summary>" "<description>"
+		And User creates an issue for delete with values <category> <reproducibility> <severity> <priority> <summary> <description>
+			| category  	  					| reproducibility | severity | priority | summary 					| description |
+      | [All Projects] Selenium | random 		 			| trivial  | low 			| not able to login | description |
 		When User click on view issues button for delete
 		And User clicks on a issue id to delete
 		Then User should reach on a delete issue page and click on delete 
 		Then go to the view issue page
 		Then check for issue
 		Then validate delete Issue on db
-		
-    Examples: 
-      | category  	  					| reproducibility | severity | priority | summary 					| description |
-      | [All Projects] Selenium | random 		 			| trivial  | low 			| not able to login | description |
-
-        

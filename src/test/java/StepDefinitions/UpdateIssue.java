@@ -42,7 +42,6 @@ public class UpdateIssue {
 		} else {
 			System.out.println("Home Page not reached");
 		}
-
 	}
 
 	@Then("User clicks on a issue id")

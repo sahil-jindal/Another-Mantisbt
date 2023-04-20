@@ -22,8 +22,8 @@ public class DeleteIssue {
 	    status = deleteIssue.checkHomePage();
 	}
 	
-	@When("User click on view issues button")
-	public void user_click_on_view_issues_button() {
+	@When("User click on view issues button for delete")
+	public void user_click_on_view_issues_button_for_delete() {
 	    deleteIssue.goToViewPage();
 	}
 	

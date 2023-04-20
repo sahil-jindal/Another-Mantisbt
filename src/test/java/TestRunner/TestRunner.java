@@ -8,6 +8,7 @@ import io.cucumber.testng.CucumberOptions;
 @Listeners(ListenerTest.class)
 @CucumberOptions(
 	features = "Features",
-	glue = "StepDefinitions"
+	glue = "StepDefinitions",
+	tags = "@deleteIssue"
 )
 public class TestRunner extends AbstractTestNGCucumberTests {}
