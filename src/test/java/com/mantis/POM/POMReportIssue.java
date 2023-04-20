@@ -3,10 +3,13 @@ package com.mantis.POM;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.mantisbt.jdbconn.DBConnection;
 
@@ -42,6 +45,7 @@ public class POMReportIssue {
 	
 	static {
 		DBConnection dbConn = new DBConnection();
+		
 		try {
 			st = dbConn.getConnection().createStatement();
 		} catch (SQLException e) {
@@ -108,30 +112,18 @@ public class POMReportIssue {
 		return match;
 	}
 
-	public String createIssue(String catog, String repro, String sever, String prior, String summary, String description) throws Exception {
-		Thread.sleep(1000);
-
+	public String createIssue(String catog, String repro, String sever, String prior, String summary, String description) {
 		new Select(driver.findElement(Category)).selectByVisibleText(catog);
-		Thread.sleep(1000);
-
 		new Select(driver.findElement(Reproducibility)).selectByVisibleText(repro);
-		Thread.sleep(1000);
-
 		new Select(driver.findElement(Severity)).selectByVisibleText(sever);
-		Thread.sleep(1000);
-
 		new Select(driver.findElement(Priority)).selectByVisibleText(prior);
-		Thread.sleep(1000);
-
 		driver.findElement(Summ).sendKeys(summary);
-		Thread.sleep(1000);
-
 		driver.findElement(Desc).sendKeys(description);
-		Thread.sleep(1000);
-
 		driver.findElement(Submit).click();
 
-		Thread.sleep(1000);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[@class='bug-id']")));
+		
 		return driver.findElement(By.xpath("//td[@class='bug-id']")).getText();
 	}
 

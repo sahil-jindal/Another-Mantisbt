@@ -27,8 +27,7 @@ public class POMUpdateIssue {
 	String summaryStatus = "//th[contains(text(),'By Status')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'";
 	String summaryCategory = "//th[contains(text(),'By Category')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'";
 	String traverse = "')]/parent::tr/td[5]";
-	By SummaryProject = By.xpath(
-			"//th[contains(text(),'By Project')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'Automation')]/parent::tr/td[5]");
+	By SummaryProject = By.xpath("//th[contains(text(),'By Project')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'Automation')]/parent::tr/td[5]");
 
 	String[] reqSummary = new String[4];
 
