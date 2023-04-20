@@ -8,15 +8,14 @@ public class POMLoginClass {
 	By UN = By.xpath("//*[@id=\"username\"]");
 	By PWD = By.xpath("//*[@id=\"password\"]");
 	By SUBMIT = By.xpath("//input[@type='submit']");
-	
+
 	WebDriver driver;
-	
+
 	public POMLoginClass(WebDriver driver) {
 		this.driver = driver;
 	}
 
-	public WebDriver login(String un, String pwd)
-	{
+	public WebDriver login(String un, String pwd) {
 		driver.findElement(UN).sendKeys(un);
 		driver.findElement(SUBMIT).click();
 		driver.findElement(PWD).sendKeys(pwd);
@@ -24,20 +23,16 @@ public class POMLoginClass {
 		return driver;
 	}
 
-	public void clearLoginValues()
-	{
+	public void clearLoginValues() {
 		driver.findElement(UN).clear();
 		driver.findElement(PWD).clear();
-		
 	}
-	
-	public void clearUN()
-	{
-		//driver.findElement(UN).clear();
+
+	public void clearUN() {
+		// driver.findElement(UN).clear();
 	}
-	
-	public void clearPWD()
-	{
+
+	public void clearPWD() {
 		driver.findElement(PWD).clear();
 	}
 }

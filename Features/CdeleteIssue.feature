@@ -16,17 +16,16 @@ Feature: Delete Feature
  @DI
 	Scenario: Validate delete issue
 		Given User is on now on homepage
+		And User creates an issue for delete with values "<category>" "<reproducibility>" "<severity>" "<priority>" "<summary>" "<description>"
 		When User click on view issues button for delete
-		And User clicks on a issue id  "<issueId>" and click on delete button
+		And User clicks on a issue id to delete
 		Then User should reach on a delete issue page and click on delete 
-		And Issue has been deleted
 		Then go to the view issue page
 		Then check for issue
 		Then validate delete Issue on db
 		
-
-
     Examples: 
-      | issueId |
-      | 0000083 | 
+      | category  	  					| reproducibility | severity | priority | summary 					| description |
+      | [All Projects] Selenium | random 		 			| trivial  | low 			| not able to login | description |
+
         

@@ -1,4 +1,3 @@
-
 @ReportIssue
 Feature: Create a report Issue
   I want to use this template for my feature file
@@ -24,6 +23,7 @@ Feature: Create a report Issue
 		Then click on issue generated
 		Then validate on issue page for values "<category>" and "<reproducibility>" and "<severity>" and "<priority>" and "<summary>" and "<description>"
 		Then validate on db for values "<category>" and "<reproducibility>" and "<severity>" and "<priority>" and "<summary>" and "<description>"
+		Then validate on summary page "<severity>" and "<category>"	
 			
     Examples: 
       | category  	  					| reproducibility | severity | priority | summary 					| description |

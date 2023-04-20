@@ -21,11 +21,11 @@ Feature: Login
     	Then navigate to view issue page
     	Then apply priority filter as "<priority>"
     	And apply severity filter as "<severity>"
-    	And apply reporter filter as "<reporter>"
-    	Then validate all filters 
+    	And apply reporter filter as "<status>"
+    	Then validate all filters with values "<priority>" "<severity>" "<status>"
     	
    	 Examples: 
-      | priority  	  | severity | reporter | 
-      | any						| any	 		 | any			|
+      | priority  	  | severity   | status   | 
+      | high					| major	 		 | new			|
 
  

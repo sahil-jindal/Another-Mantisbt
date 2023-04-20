@@ -18,7 +18,7 @@ Feature: Update Issue
   @UI 
 	Scenario: Validate update issue
 	    Given User is on currently on homepage
-	    And User creates an issue with values "<category>" "<reproducibility>" "<severity>" "<priority>" "<summary>" "<description>"
+	    And User creates an issue with values "<category>" "<reproducibility>" "<severity>" "<priority>" "<summary>" "<description>" "<status>"
 	    When User click on view issues button
 	    Then User clicks on a issue id
 	    And User clicks on edit button
@@ -27,7 +27,7 @@ Feature: Update Issue
 			Then click on issue updated
 			Then validate update issue on issue page with "<status>" and "<resolution>"
 			Then validate update issue on db with "<status>" and "<resolution>"
-				
+			Then validate on summary page "<severity>" and "<category>" and "<status>"
 			
     Examples: 
       | category  	  					| reproducibility | severity | priority | summary 					| description |status 	 | resolution |

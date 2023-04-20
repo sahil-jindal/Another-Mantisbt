@@ -2,24 +2,23 @@ package com.mantis.POM;
 
 import java.util.HashMap;
 
-public class IssueVariable{
-	
-	 HashMap<String, Integer> prior = new HashMap<>();
-	 HashMap<String, Integer> repro = new HashMap<>();
-	 HashMap<String, Integer> catog = new HashMap<>();
-	 HashMap<String, Integer> sever = new HashMap<>();
-	 HashMap<String, Integer> status = new HashMap<>();
-	 HashMap<String, Integer> resolution = new HashMap<>();
+public class IssueVariable {
 
-	public IssueVariable()
-	{
+	HashMap<String, Integer> prior = new HashMap<>();
+	HashMap<String, Integer> repro = new HashMap<>();
+	HashMap<String, Integer> catog = new HashMap<>();
+	HashMap<String, Integer> sever = new HashMap<>();
+	HashMap<String, Integer> status = new HashMap<>();
+	HashMap<String, Integer> resolution = new HashMap<>();
+
+	public IssueVariable() {
 		prior.put("none", 10);
 		prior.put("low", 20);
 		prior.put("normal", 30);
 		prior.put("high", 40);
 		prior.put("urgent", 50);
 		prior.put("immediate", 60);
-		
+
 		repro.put("always", 10);
 		repro.put("sometimes", 30);
 		repro.put("random", 50);
@@ -29,7 +28,7 @@ public class IssueVariable{
 
 		catog.put("[All Projects] General", 1);
 		catog.put("[All Projects] Selenium", 2);
-		
+
 		sever.put("feature", 10);
 		sever.put("trivial", 20);
 		sever.put("text", 30);
@@ -46,7 +45,7 @@ public class IssueVariable{
 		status.put("assigned", 50);
 		status.put("resolved", 80);
 		status.put("closed", 90);
-		
+
 		resolution.put("open", 10);
 		resolution.put("fixed", 20);
 		resolution.put("reopened", 30);
@@ -56,9 +55,5 @@ public class IssueVariable{
 		resolution.put("no change required", 70);
 		resolution.put("suspended", 80);
 		resolution.put("won't fix", 90);
-		
 	}
-	
-	
-	
 }

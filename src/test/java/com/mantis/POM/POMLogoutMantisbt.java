@@ -6,8 +6,8 @@ import org.openqa.selenium.WebDriver;
 public class POMLogoutMantisbt {
 
 	WebDriver driver;
-	DriverLib libDriver=new DriverLib();
-	
+	DriverLib libDriver = new DriverLib();
+
 	public void logout() throws Exception {
 		driver = libDriver.getWebDriver();
 		driver.findElement(By.xpath("//a[@href='#']//span[contains(text(),'administrator')]")).click();
@@ -15,5 +15,4 @@ public class POMLogoutMantisbt {
 		System.out.println("user logout");
 		Thread.sleep(2000);
 	}
-	
 }

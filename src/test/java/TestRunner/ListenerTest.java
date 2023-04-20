@@ -33,19 +33,16 @@ public class ListenerTest implements ITestListener {
 	}
 
 	public void onTestStart(ITestResult result) {
-		// TODO Auto-generated method stub
 		String name = result.getName();
 		etest = extent.createTest(name);
 	}
 
 	public void onTestSuccess(ITestResult result) {
-		// TODO Auto-generated method stub
 		String test = result.getName();
 		etest.pass(test + " has passed");
 	}
 
 	public void onTestFailure(ITestResult result) {
-		// TODO Auto-generated method stub
 		String test = result.getName();
 		etest.fail(test + " has failed");
 	}
