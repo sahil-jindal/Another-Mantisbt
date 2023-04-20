@@ -28,5 +28,7 @@ Feature: Create a report Issue
 			
     Examples: 
       | category  	  					| reproducibility | severity | priority | summary 					| description |
-      | [All Projects] Selenium | random 		 			| trivial  | low 			| not able to login | description |
+      | [All Projects] Selenium | random 					| trivial  | low 			| not able to login | description |
+      | [All Projects] Selenium | random 					| trivial  | no value | not able to login | description |
+      | [All Projects] Selenium | random 					| trivial  | high 		| not able to login | description |
 

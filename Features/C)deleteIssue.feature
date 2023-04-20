@@ -28,5 +28,6 @@ Feature: Delete Feature
 
     Examples: 
       | category  	  					| reproducibility | severity | priority | summary 					| description |
-      | [All Projects] Selenium | random 		 			| trivial  | low 			| not able to login | description | 
+      | [All Projects] Selenium | random 					| trivial  | low 		  | not able to login | description |
+      | [All Projects] Selenium | random 					| trial 	 | low 		  | not able to login | description | 
         

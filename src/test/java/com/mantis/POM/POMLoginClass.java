@@ -16,23 +16,17 @@ public class POMLoginClass {
 	}
 
 	public WebDriver login(String un, String pwd) {
-		driver.findElement(UN).sendKeys(un);
-		driver.findElement(SUBMIT).click();
-		driver.findElement(PWD).sendKeys(pwd);
-		driver.findElement(SUBMIT).click();
+		try {
+
+			driver.get("http://localhost/mantisbt/login_page.php");
+			driver.findElement(UN).sendKeys(un);
+			driver.findElement(SUBMIT).click();
+			driver.findElement(PWD).sendKeys(pwd);
+			driver.findElement(SUBMIT).click();
+		} catch (Exception e) {
+			System.out.println("Login Failed");
+		}
+
 		return driver;
-	}
-
-	public void clearLoginValues() {
-		driver.findElement(UN).clear();
-		driver.findElement(PWD).clear();
-	}
-
-	public void clearUN() {
-		// driver.findElement(UN).clear();
-	}
-
-	public void clearPWD() {
-		driver.findElement(PWD).clear();
 	}
 }

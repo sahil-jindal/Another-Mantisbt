@@ -3,6 +3,8 @@ package com.mantis.POM;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import com.utility.DriverLib;
+
 public class POMLogoutMantisbt {
 
 	WebDriver driver;

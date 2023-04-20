@@ -31,7 +31,8 @@ Feature: Update Issue
 				
 			
     Examples: 
-      | category  	  					| reproducibility | severity | priority | summary 					| description |status 	 | resolution |
-      | [All Projects] Selenium | random 		 			| trivial  | low 			| not able to login | description |resolved  | fixed 			|
-     	| [All Projects] Selenium | always 		 			| major	   | high			| summary						| description |assigned  | open				|
+      | category  	  					| reproducibility | severity | priority | summary 					| description | status 	  | resolution |
+      | [All Projects] Selenium | random 					| trivial  | low 			| not able to login | description | resolved  | fixed 		 |
+      | [All Projects] Selenium | random 					| trivial  | high 		| not able to login | description | confirmed | reopened 	 |
+      | [All Projects] Selenium | random 					| trivial  | high 		| not able to login | description | resolved 	| not valid  |
       
