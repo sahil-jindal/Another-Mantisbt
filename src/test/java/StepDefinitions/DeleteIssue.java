@@ -3,7 +3,9 @@ package StepDefinitions;
 import java.util.List;
 import java.util.Map;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.mantis.POM.DriverLib;
 import com.mantis.POM.POMDeleteIssue;
@@ -78,7 +80,19 @@ public class DeleteIssue {
 	
 	@Then("check for issue")
 	public void check_for_issue() {
-	    
+		
+		boolean deleted = true;
+		List<WebElement> list = driver.findElements(By.xpath("//*[@class='column-id']"));
+		
+		for (WebElement web : list) {
+			if (web.getText().contains(issueID)) {
+				deleted = false;
+			}
+		}
+		
+		if(deleted) {
+			
+		}
 	}
 	
 	@Then("validate delete Issue on db")
