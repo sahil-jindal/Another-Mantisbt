@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\sahildjindal\AppData\Local\Temp\testng-eclipse--867915817\testng-customsuite.xml</span>
+                    <span>C:\Users\sahildjindal\AppData\Local\Temp\testng-eclipse--371779680\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -130,33 +130,9 @@
                   </a> <!-- runScenario("Validate delete issue", "Delete Feature") -->
                   <span class="method-name">runScenario</span>
                   <span class="parameters">("Validate delete issue","Delete Feature")</span>
-                  <div class="stack-trace">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: MicrosoftEdge=112.0.1722.48)
-Build info: version: &apos;4.8.3&apos;, revision: &apos;e5e76298c3&apos;
-System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.6&apos;
-Driver info: org.openqa.selenium.edge.EdgeDriver
-Command: [122e96cab833aae3ab95fc1623a76528, findElement {using=xpath, value=//*[@id=&quot;username&quot;]}]
-Capabilities {acceptInsecureCerts: false, browserName: msedge, browserVersion: 112.0.1722.48, ms:edgeOptions: {debuggerAddress: localhost:53078}, msedge: {msedgedriverVersion: 112.0.1722.48 (d0924f8b9cb9..., userDataDir: C:\Users\SAHILD~1\AppData\L...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:53078/devtoo..., se:cdpVersion: 112.0.1722.48, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 122e96cab833aae3ab95fc1623a76528
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:183)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:158)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
-	at com.mantis.POM.POMLoginClass.login(POMLoginClass.java:19)
-	at StepDefinitions.Hooks.login(Hooks.java:20)
+                  <div class="stack-trace">io.cucumber.java.PendingException: TODO: implement me
+	at StepDefinitions.DeleteIssue.user_clicks_on_a_issue_id_to_delete(DeleteIssue.java:48)
+	at ✽.User clicks on a issue id to delete(file:///C:/Users/sahildjindal/Documents/SDET%20Learning/GroupProject1/groupone/Features/CdeleteIssue.feature:23)
 
 </div> <!-- stack-trace -->
                   <em>
@@ -168,7 +144,7 @@ Session ID: 122e96cab833aae3ab95fc1623a76528
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\sahildjindal\AppData\Local\Temp\testng-eclipse--867915817\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\sahildjindal\AppData\Local\Temp\testng-eclipse--371779680\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -229,12 +205,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'runScenario')
 data.setCell(0, 2, 'TestRunner.TestRunner')
-data.setCell(0, 3, 12123);
+data.setCell(0, 3, 8538);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 12 seconds</span>
+              <span class="suite-total-time">Total running time: 8 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -262,18 +238,18 @@ return data;
             <div class="chronological-class">
               <div class="chronological-class-name">TestRunner.TestRunner</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
-                <span class="method-name">setUpClass(org.testng.TestRunner@41b64020)</span>
+                <span class="method-name">setUpClass(org.testng.TestRunner@5403799b)</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
                 <span class="method-name">runScenario("Validate delete issue", "Delete Feature")</span>
-                <span class="method-start">228 ms</span>
+                <span class="method-start">215 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDownClass</span>
-                <span class="method-start">12369 ms</span>
+                <span class="method-start">8764 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

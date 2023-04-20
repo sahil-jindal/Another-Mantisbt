@@ -17,7 +17,7 @@ public class Hooks {
 	@Before
 	public void login() {
 		POMLoginClass login = new POMLoginClass(driver);
-		login.login("administrator", "root");
+		login.login("administrator", "root1");
 	}
 
 	@After
