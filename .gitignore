@@ -4,7 +4,7 @@
 #     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
 
 # Eclipse files
-.settings/
+.settings
 .project
 .classpath
 test-output/
