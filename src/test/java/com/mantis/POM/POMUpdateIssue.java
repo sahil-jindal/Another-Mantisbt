@@ -29,8 +29,7 @@ public class POMUpdateIssue {
 	String summaryStatus = "//th[contains(text(),'By Status')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'";
 	String summaryCategory = "//th[contains(text(),'By Category')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'";
 	String traverse = "')]/parent::tr/td[5]";
-	By SummaryProject = By.xpath(
-			"//th[contains(text(),'By Project')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'Selenium')]/parent::tr/td[5]");
+	By SummaryProject = By.xpath("//th[contains(text(),'By Project')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'Selenium')]/parent::tr/td[5]");
 
 	String[] reqSummary = new String[4];
 	WebDriver driver;
@@ -48,30 +47,21 @@ public class POMUpdateIssue {
 		this.driver = driver;
 	}
 
-	public boolean updateIssue(String stats, String reso) {
+	public boolean updateIssue(String stats, String reso) throws Exception {
 
-		boolean status = true;
-		try {
-			Thread.sleep(1000);
+		boolean status = false;
 
-			new Select(driver.findElement(statusButton)).selectByVisibleText(stats);
-			Thread.sleep(1000);
-			new Select(driver.findElement(resolution)).selectByVisibleText(reso);
-			Thread.sleep(1000);
-			driver.findElement(updateButton).click();
-			Thread.sleep(2000);
+		new Select(driver.findElement(statusButton)).selectByVisibleText(stats);
+		Thread.sleep(1000);
+		new Select(driver.findElement(resolution)).selectByVisibleText(reso);
+		Thread.sleep(1000);
+		driver.findElement(updateButton).click();
+		Thread.sleep(2000);
 
-			if (!driver.getCurrentUrl().equals("http://localhost/mantisbt/bug_update.php")) {
-			} else {
-				System.out.println("enter a valid combination");
-				status = false;
-			}
-			// System.out.println(driver.findElement(newStatus).getText());
-
-		} catch (Exception e) {
+		if (driver.getCurrentUrl().equals("http://localhost/mantisbt/bug_update.php")) {
 			status = false;
-			System.out.println("enter a valid id");
-			e.printStackTrace();
+		} else {
+			status = true;
 		}
 
 		return status;
@@ -99,11 +89,12 @@ public class POMUpdateIssue {
 
 		if (!stat.contains(driver.findElement(IssueStat).getText())) {
 			status = false;
-			System.out.println("cat" + (driver.findElement(IssueStat).getText()) + stat);
+			// System.out.println("cat" + (driver.findElement(IssueStat).getText()) + stat);
 		}
 		if (!resolution.contains(driver.findElement(IssueRes).getText())) {
 			status = false;
-			System.out.println("repro" + (driver.findElement(IssueRes).getText()) + resolution);
+			// System.out.println("repro" + (driver.findElement(IssueRes).getText()) +
+			// resolution);
 		}
 
 		return status;
@@ -152,23 +143,42 @@ public class POMUpdateIssue {
 
 	public boolean validateSummary(String sever, String catog, String statusc) throws NoSuchElementException {
 
-		boolean status = true;
+		boolean status = false;
+		int count = 0;
 
 		driver.findElement(SummaryButton).click();
 
-		if (!driver.findElement(SummaryProject).getText().equals(Integer.toString(Integer.parseInt(reqSummary[0]) + 1)))
-			status = false;
+		if (driver.findElement(SummaryProject).getText()
+				.equals(Integer.toString(Integer.parseInt(reqSummary[0]) + 1))) {
+			count += 1;
+		}
 
-		if (!driver.findElement(By.xpath(summaryStatus + statusc + traverse)).getText()
-				.equals(Integer.toString(Integer.parseInt(reqSummary[1]) + 1)))
-			status = false;
-		if (!driver.findElement(By.xpath(summarySeverity + sever + traverse)).getText()
-				.equals(Integer.toString(Integer.parseInt(reqSummary[2]) + 1)))
-			status = false;
+		if (!driver.findElements(By.xpath(summaryStatus + statusc + traverse)).isEmpty()) {
+			if (driver.findElement(By.xpath(summaryStatus + statusc + traverse)).getText()
+					.equals(Integer.toString(Integer.parseInt(reqSummary[1]) + 1))) {
 
-		if (!driver.findElement(By.xpath(summaryCategory + catog.split(" ")[2] + traverse)).getText()
-				.equals(Integer.toString(Integer.parseInt(reqSummary[3]) + 1)))
-			status = false;
+				count += 1;
+			}
+		}
+
+		if (!driver.findElements(By.xpath(summarySeverity + sever + traverse)).isEmpty()) {
+			if (driver.findElement(By.xpath(summarySeverity + sever + traverse)).getText()
+					.equals(Integer.toString(Integer.parseInt(reqSummary[2]) + 1))) {
+				count += 1;
+			}
+		}
+
+		if (!driver.findElements(By.xpath(summaryCategory + catog.split(" ")[2] + traverse)).isEmpty()) {
+			if (driver.findElement(By.xpath(summaryCategory + catog.split(" ")[2] + traverse)).getText()
+					.equals(Integer.toString(Integer.parseInt(reqSummary[3]) + 1))) {
+				count += 1;
+			}
+		}
+		
+		if(count == 4)
+		{
+			status = true;
+		}
 
 		return status;
 	}

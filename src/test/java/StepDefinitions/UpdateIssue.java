@@ -105,14 +105,21 @@ public class UpdateIssue {
 
 	@Then("User updates status as {string} and resolution as {string}")
 	public void user_updates_status_as_and_resolution_as(String stat, String resolution) {
+		
+		boolean status = false;
 		System.out.printf("| %-12s | %-40s |","","UPDATE ISSUE");
 		try {
-			ui.updateIssue(stat, resolution);
-			System.out.printf(" %-7s |%-12s |%n","PASS", "");
+			status = ui.updateIssue(stat, resolution);
+			if (status) {
+				System.out.printf(" %-7s |%-12s |%n","PASS", "");
+			} else {
+				System.out.printf(" %-7s |%-12s |%n","FAIL", "");		
+			}
 		} catch (Exception e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
 			fail("Exception in update issue");
 		}
+			
 	}
 
 	@Then("go to view issue page for updateIssue")
@@ -189,7 +196,8 @@ public class UpdateIssue {
 				status =  ui.validateSummary( sever , catog , stat );
 				System.out.printf(" %-7s |","PASS");
 			} catch (Exception e) {
-				System.out.printf(" %-7s |","FAIL");
+				System.out.printf(" %-7s |%-12s |%n","FAIL", "FAILURE");
+				e.printStackTrace();
 				fail("Exception in validate Summary page for Update Issue");
 			}
 			if(status)

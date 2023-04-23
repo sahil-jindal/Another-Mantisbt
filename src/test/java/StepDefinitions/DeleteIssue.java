@@ -111,7 +111,6 @@ public class DeleteIssue {
 	public void validate_for_issue_deleted() {
 		boolean status = false;
 		System.out.printf("| %-12s | %-40s |","","VALIDATE ISSUE ID DELETED");
-		
 		try {
 			status = di.validateDelete(issueId);
 			System.out.printf(" %-7s |","PASS");
@@ -126,7 +125,6 @@ public class DeleteIssue {
 			System.out.printf("%-12s |%n","FAILURE");
 		}
 	}
-	
 	@Then("validate delete Issue on db")
 	public void validate_delete_Issue_on_db() {
 		boolean status = false;

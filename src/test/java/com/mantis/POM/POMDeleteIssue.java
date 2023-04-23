@@ -19,8 +19,10 @@ public class POMDeleteIssue {
 
 	WebDriver driver;
 	private static Statement st = null;
+	
 	static {
 		DBConnection dbConn = new DBConnection();
+		
 		try {
 			st = dbConn.getConnection().createStatement();
 		} catch (SQLException e) {
@@ -83,6 +85,7 @@ public class POMDeleteIssue {
 			status = true;
 			return status;
 		}
+		
 		return status;
 	}
 }

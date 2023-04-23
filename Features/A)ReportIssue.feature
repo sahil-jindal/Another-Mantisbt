@@ -1,19 +1,6 @@
-
 @ReportIssue
 Feature: Create a report Issue
   I want to use this template for my feature file
-
-#	Background: User is Logged In
-#		Given user is on the login page
-#	  And user enter username as "<username>" and click on login
-#	  And user enter password as "<password>" and click on login
-#	  Then user should be able to login successfully
-#	  And user should be able to navigate to home page
-  #
-    #Examples: 
-      #| username  	  | password |
-      #| administrator | root 		 |
-	
 
   @RI
   Scenario: Validate report issue
@@ -31,4 +18,3 @@ Feature: Create a report Issue
       | [All Projects] Selenium | random 					| trivial  | low 			| not able to login | description |
       | [All Projects] Selenium | random 					| trivial  | no value | not able to login | description |
       | [All Projects] Selenium | random 					| trivial  | high 		| not able to login | description |
-
