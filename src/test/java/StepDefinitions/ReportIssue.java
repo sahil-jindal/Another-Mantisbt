@@ -113,17 +113,15 @@ public class ReportIssue {
 			System.out.printf(" %-7s |","PASS");
 		} catch (NoSuchElementException e) {
 			System.out.printf(" %-7s |","FAIL");
-			fail("Exception in validate Report Issue");
-			
+			fail("Exception in validate Report Issue");	
 		}
 
 		if (status) {
 			//System.out.println("Values validated successfully");
-			System.out.printf("%-12s |%n","SUCCESS");	
+			System.out.printf("%-12s |%n","SUCCESS");
 		} else {
 			System.out.printf("%-12s |%n","FAILURE");
 		}
-
 	}
 
 	@Then("validate on db for values {string} and {string} and {string} and {string} and {string} and {string}")

@@ -9,8 +9,8 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
 	features = "Features",
 	glue = "StepDefinitions",
-//	tags = "@ReportIssue or @UpdateIssue or @DeleteIssue or @FilterIssue"
-	tags = "@ReportIssue"
+	tags = "@ReportIssue or @UpdateIssue or @DeleteIssue or @FilterIssue"
+//	tags = "@ReportIssue"
 //	tags = "@UpdateIssue"
 //	tags = "@DeleteIssue"
 //	tags = "@FilterIssue"

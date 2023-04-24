@@ -34,7 +34,7 @@ public class POMReportIssue {
 	String summaryStatus = "//th[contains(text(),'By Status')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'";
 	String summaryCategory = "//th[contains(text(),'By Category')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'";
 	String traverse = "')]/parent::tr/td[5]";
-	By SummaryProject = By.xpath("//th[contains(text(),'By Project')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'Selenium')]/parent::tr/td[5]");
+	By SummaryProject = By.xpath("//th[contains(text(),'By Project')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'automation')]/parent::tr/td[5]");
 	By SummaryStatus = By.xpath("//th[contains(text(),'By Status')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'new')]/parent::tr/td[5]");
 
 	String[] reqSummary = new String[4];
@@ -75,26 +75,32 @@ public class POMReportIssue {
 			status = false;
 			System.out.println("cat" + (driver.findElement(IssueCat).getText()) + catog);
 		}
+		
 		if (!repro.contains(driver.findElement(IssueRepro).getText())) {
 			status = false;
 			System.out.println("repro" + (driver.findElement(IssueRepro).getText()) + repro);
 		}
+		
 		if (!sever.contains(driver.findElement(IssueSev).getText())) {
 			status = false;
 			System.out.println("sever" + (driver.findElement(IssueSev).getText()) + sever);
 		}
+		
 		if (!prior.contains(driver.findElement(IssuePri).getText())) {
 			status = false;
 			System.out.println("prior" + (driver.findElement(IssuePri).getText()) + prior);
 		}
+		
 		if (!driver.findElement(IssueSum).getText().contains(summary)) {
 			status = false;
 			System.out.println("sum" + (driver.findElement(IssueSum).getText()) + summary);
 		}
+		
 		if (!description.contains(driver.findElement(IssueDesc).getText())) {
 			status = false;
 			System.out.println("desc" + (driver.findElement(IssueDesc).getText()) + description);
 		}
+		
 		return status;
 	}
 
@@ -176,6 +182,7 @@ public class POMReportIssue {
 		driver.findElement(SummaryButton).click();
 
 		reqSummary[0] = driver.findElement(SummaryProject).getText();
+		
 		if (!driver.findElements(By.xpath(summaryStatus + "new" + traverse)).isEmpty())
 			reqSummary[1] = driver.findElement(By.xpath(summaryStatus + "new" + traverse)).getText();
 		else if (iv.status.containsKey("new"))

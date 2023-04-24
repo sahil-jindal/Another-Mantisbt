@@ -9,13 +9,13 @@ Feature: Filter Issue
     And apply severity filter as "<severity>"
     And apply status filter as "<status>"
     Then validate all filters with values "<priority>" "<severity>" "<status>"
-    	
-   	Examples: 
+        
+       Examples: 
       | priority | severity | status | 
-      | high 	 | major 	| new 	 |
-      | [any] 	 | [any] 	| [any]  |
-      | invalid  | [any] 	| new 	 |
-      | low 	 | major 	| new 	 |
-      | none 	 | major 	| new 	 |
-      | [any]	 | text	 	| new 	 |
-      | urgent	 | [any]	| none	 |
+      | high     | major    | new    |
+      | [any]    | [any]    | [any]  |
+      | invalid  | [any]    | new    |
+      | low      | major    | new    |
+      | none     | major    | new    |
+      | [any]    | text     | new    |
+      | urgent   | [any]    | none   |
