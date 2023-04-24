@@ -10,7 +10,7 @@ Feature: Filter Issue
     And apply status filter as "<status>"
     Then validate all filters with values "<priority>" "<severity>" "<status>"
         
-       Examples: 
+    Examples: 
       | priority | severity | status | 
       | high     | major    | new    |
       | [any]    | [any]    | [any]  |
