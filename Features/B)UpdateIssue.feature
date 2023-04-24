@@ -1,4 +1,3 @@
-
 @UpdateIssue
 Feature: Update Issue
   I want to use this to check my update feature 
@@ -16,10 +15,10 @@ Feature: Update Issue
 	  Then validate update issue on issue page with "<status>" and "<resolution>"
 	  Then validate update issue on db with "<status>" and "<resolution>"
 	  Then validate on summary page "<severity>" and "<category>" and "<status>"
-	
-    Examples: 
-      | category  	  			| reproducibility | severity | priority | summary 			| description | status 	  | resolution |
-      | [All Projects] Selenium | random 		  | trivial  | low 		| not able to login | description | resolved  | fixed 	   |
-      | [All Projects] Selenium | random 		  | trivial  | high 	| not able to login | description | confirmed | reopened   |
-      | [All Projects] Selenium | random 		  | trivial  | high 	| not able to login | description | resolved  | not valid  |
+		
+      Examples: 
+        | category  	  		  | reproducibility | severity | priority | summary 		  | description | status 	| resolution |
+        | [All Projects] Selenium | random 			| trivial  | low 	  | not able to login | description | resolved  | fixed 	 |
+        | [All Projects] Selenium | random 			| trivial  | high 	  | not able to login | description | confirmed | reopened 	 |
+        | [All Projects] Selenium | random 			| trivial  | high 	  | not able to login | description | resolved  | not valid  |
       

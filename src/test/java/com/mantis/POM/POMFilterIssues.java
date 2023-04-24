@@ -22,6 +22,8 @@ public class POMFilterIssues {
 	By PriorityList = By.xpath("//*[@class='column-priority']/i");
 	By SeverityList = By.xpath("//*[@class='column-severity']");
 	By StatusList = By.xpath("//*[@class='column-status']");
+	By NextButton = By.xpath("//div[@class='btn-toolbar']//a[contains(text(),'Next')]");
+	By Per_page_index = By.xpath("//td[@id='per_page_filter_target']");
 
 	WebDriver driver;
 
@@ -38,7 +40,6 @@ public class POMFilterIssues {
 	}
 
 	public void applyPriorityFilter(String prior) throws Exception {
-
 		driver.findElement(prioritylink).click();
 		Thread.sleep(1000);
 		new Select(driver.findElement(priorityselect)).selectByVisibleText(prior);
@@ -47,7 +48,6 @@ public class POMFilterIssues {
 	}
 
 	public void applySeverittyFilter(String sever) throws Exception {
-
 		driver.findElement(severitylink).click();
 		Thread.sleep(1000);
 		new Select(driver.findElement(severityselect)).selectByVisibleText(sever);
@@ -56,7 +56,6 @@ public class POMFilterIssues {
 	}
 
 	public void applyStatusFilter(String status) throws Exception {
-
 		driver.findElement(Statuslink).click();
 		Thread.sleep(1000);
 		new Select(driver.findElement(Statusselect)).selectByVisibleText(status);
@@ -65,31 +64,40 @@ public class POMFilterIssues {
 	}
 
 	public boolean validateFilter(String prior, String sever, String stats) throws NoSuchElementException {
-
+		boolean repeat_for_next_page = false;
 		boolean status = true;
 
-		List<WebElement> ilist = driver.findElements(IssueList);
-		List<WebElement> plist = driver.findElements(PriorityList);
-		List<WebElement> severlist = driver.findElements(SeverityList);
-		List<WebElement> statlist = driver.findElements(StatusList);
-
-		if (prior.contains("none"))
-			if (plist.size() != 0)
-				status = false;
-		for (int i = 1; i < ilist.size(); i++) {
-			if ((!prior.contains("none"))) {
-				if ((!(plist.get(i - 1).getAttribute("title")).contains(prior)) && (!prior.contains("any"))) {
+		do {
+			repeat_for_next_page = false;
+			int total_issues_per_page = Integer.parseInt(driver.findElement(Per_page_index).getText());
+			List<WebElement> ilist = driver.findElements(IssueList);
+			List<WebElement> plist = driver.findElements(PriorityList);
+			List<WebElement> severlist = driver.findElements(SeverityList);
+			List<WebElement> statlist = driver.findElements(StatusList);
+			int issues_size = ilist.size();
+			if (prior.contains("none"))
+				if (plist.size() != 0)
+					status = false;
+			for (int i = 1; i < issues_size; i++) {
+				if ((!prior.contains("none")) && (!prior.contains("any"))) {
+					if (!(plist.get(i - 1).getAttribute("title")).contains(prior)) {
+						status = false;
+					}
+				}
+				if ((!(severlist.get(i).getText()).contains(sever)) && (!sever.contains("any"))) {
+					status = false;
+				}
+				if ((!(statlist.get(i).getText()).contains(stats)) && (!stats.contains("any"))) {
 					status = false;
 				}
 			}
-			if ((!(severlist.get(i).getText()).contains(sever)) && (!sever.contains("any"))) {
-				status = false;
+			if (total_issues_per_page == (issues_size - 1) && !driver.findElements(NextButton).isEmpty()) {
+				if (driver.findElement(NextButton).isEnabled()) {
+					repeat_for_next_page = true;
+					driver.findElement(NextButton).click();
+				}
 			}
-			if ((!(statlist.get(i).getText()).contains(stats)) && (!stats.contains("any"))) {
-				status = false;
-			}
-			
-		}
+		} while (repeat_for_next_page);
 		return status;
 	}
 }

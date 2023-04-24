@@ -18,7 +18,7 @@ public class DBConnection {
 	private Connection createConnection() {
 
 		String conn_url = "jdbc:mysql://localhost:3306/bugtracker";
-		String UN = "root1";
+		String UN = "root";
 		String PWD = "";
 		this.conn = null;
 		try {

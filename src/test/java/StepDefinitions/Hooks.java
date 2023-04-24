@@ -17,8 +17,7 @@ public class Hooks {
 	static WebDriver driver = libDriver.getWebDriver();
 
 	@BeforeAll
-	public static void beforeAll()
-	{
+	public static void beforeAll() {
 		System.out.printf("-----------------------------------------------------------------------------------%n");
 		System.out.printf("| %-12s | %-40s | %-7s |%-12s |%n", "TEST", "STEPS", "RESULT", "VALIDATION");
 	}
@@ -27,7 +26,6 @@ public class Hooks {
 	public void login() {
 		POMLoginClass login = new POMLoginClass(driver);
 		login.login("administrator", "root1");
-		
 	}
 
 	@After
@@ -41,7 +39,5 @@ public class Hooks {
 	@AfterAll
 	public static void final_quit() {
 		System.out.printf("-----------------------------------------------------------------------------------%n");
-
 	}
-
 }

@@ -34,6 +34,7 @@ public class POMUpdateIssue {
 	String[] reqSummary = new String[4];
 	WebDriver driver;
 	private static Statement st = null;
+	
 	static {
 		DBConnection dbConn = new DBConnection();
 		try {

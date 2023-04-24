@@ -26,8 +26,8 @@ public class ReportIssue {
 
 	@Given("user is on homepage")
 	public void user_is_on_homepage() {
-
 		System.out.printf(" %-40s |","LOGIN");
+		
 		try {
 			ri.checkHomePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
@@ -40,6 +40,7 @@ public class ReportIssue {
 	@When("user click on report issue button")
 	public void user_click_on_report_issue_button() {
 		System.out.printf("| %-12s | %-40s |","","REPORT ISSUE BUTTON");
+		
 		try {
 			ri.goToReportIssuePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
@@ -52,9 +53,12 @@ public class ReportIssue {
 	@When("user enter the issue details as {string} and {string} and {string} and {string} and {string} and {string} click on Submit issue")
 	public void user_enter_the_issue_details_click_on_submit_issue(String catog, String repro, String sever,
 			String prior, String summary, String description) {
+		
 		System.out.printf("| %-12s | %-40s |","","FETCH SUMMARY DETAILS");
+		
 		try {
 			ri.fetchSummaryDetails(sever, catog);
+			ri.goToReportIssuePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (Exception e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -62,6 +66,7 @@ public class ReportIssue {
 		}
 		
 		System.out.printf("| %-12s | %-40s |","","CREATE ISSUE");
+		
 		try {
 			issueId = ri.createIssue(catog, repro, sever, prior, summary, description);
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
@@ -74,6 +79,7 @@ public class ReportIssue {
 	@Then("go to view issue page")
 	public void go_to_view_issue_page() {
 		System.out.printf("| %-12s | %-40s |","","VIEW ISSUE PAGE");
+		
 		try {
 			ri.goToViewIssuePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
@@ -85,6 +91,7 @@ public class ReportIssue {
 	@Then("click on issue generated")
 	public void click_on_issue_generated() {
 		System.out.printf("| %-12s | %-40s |","","CLICK ON ISSUE GENERATED");
+		
 		try {
 			ri.clickOnIssue(issueId);
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
@@ -100,6 +107,7 @@ public class ReportIssue {
 
 		boolean status = false;
 		System.out.printf("| %-12s | %-40s |","","VALIDATE ON ISSUE PAGE");
+		
 		try {
 			status = ri.validateIssue(catog, repro, sever, prior, summary, description);
 			System.out.printf(" %-7s |","PASS");
@@ -111,8 +119,7 @@ public class ReportIssue {
 
 		if (status) {
 			//System.out.println("Values validated successfully");
-			System.out.printf("%-12s |%n","SUCCESS");
-			
+			System.out.printf("%-12s |%n","SUCCESS");	
 		} else {
 			System.out.printf("%-12s |%n","FAILURE");
 		}

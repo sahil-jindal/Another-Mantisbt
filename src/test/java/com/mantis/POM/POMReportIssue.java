@@ -24,8 +24,7 @@ public class POMReportIssue {
 	By Summ = By.xpath("//*[@id=\"summary\"]");
 	By Desc = By.xpath("//*[@id=\"description\"]");
 	By Submit = By.xpath("//*[@id=\"report_bug_form\"]/div/div[2]/div[2]/input");
-	By IssueCat = By.xpath(
-			"//div[@class='table-responsive'][1]/table/tbody//tr[@class='bug-header-data']//td[@class='bug-category']");
+	By IssueCat = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr[@class='bug-header-data']//td[@class='bug-category']");
 	By IssueRepro = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-reproducibility']");
 	By IssueSev = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-severity']");
 	By IssuePri = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-priority']");
@@ -35,15 +34,14 @@ public class POMReportIssue {
 	String summaryStatus = "//th[contains(text(),'By Status')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'";
 	String summaryCategory = "//th[contains(text(),'By Category')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'";
 	String traverse = "')]/parent::tr/td[5]";
-	By SummaryProject = By.xpath(
-			"//th[contains(text(),'By Project')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'Selenium')]/parent::tr/td[5]");
-	By SummaryStatus = By.xpath(
-			"//th[contains(text(),'By Status')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'new')]/parent::tr/td[5]");
+	By SummaryProject = By.xpath("//th[contains(text(),'By Project')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'Selenium')]/parent::tr/td[5]");
+	By SummaryStatus = By.xpath("//th[contains(text(),'By Status')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'new')]/parent::tr/td[5]");
 
 	String[] reqSummary = new String[4];
 
 	WebDriver driver;
 	private static Statement st = null;
+	
 	static {
 		DBConnection dbConn = new DBConnection();
 		try {
@@ -174,20 +172,27 @@ public class POMReportIssue {
 
 	public void fetchSummaryDetails(String sever, String catog) {
 
-		
-		try {
-			driver.findElement(SummaryButton).click();
+		IssueVariable iv = new IssueVariable();
+		driver.findElement(SummaryButton).click();
 
-			reqSummary[0] = driver.findElement(SummaryProject).getText();
-			reqSummary[1] = driver.findElement(SummaryStatus).getText();
+		reqSummary[0] = driver.findElement(SummaryProject).getText();
+		if (!driver.findElements(By.xpath(summaryStatus + "new" + traverse)).isEmpty())
+			reqSummary[1] = driver.findElement(By.xpath(summaryStatus + "new" + traverse)).getText();
+		else if (iv.status.containsKey("new"))
+			reqSummary[1] = Integer.toString(0);
+		if (!driver.findElements(By.xpath(summarySeverity + sever + traverse)).isEmpty())
 			reqSummary[2] = driver.findElement(By.xpath(summarySeverity + sever + traverse)).getText();
+		else if (iv.sever.containsKey(sever))
+			reqSummary[2] = Integer.toString(0);
+		if (!driver.findElements(By.xpath(summaryCategory + catog.split(" ")[2] + traverse)).isEmpty())
 			reqSummary[3] = driver.findElement(By.xpath(summaryCategory + catog.split(" ")[2] + traverse)).getText();
-
-			goToReportIssuePage();
-		} catch (NoSuchElementException e) {
-			System.out.println("Exception in Fetch summary Details");
-			e.printStackTrace();
-		}
+		else if (iv.catog.containsKey(catog))
+			reqSummary[3] = Integer.toString(0);
+		
+//		System.out.println(reqSummary[0]);
+//		System.out.println(reqSummary[1]);
+//		System.out.println(reqSummary[2]);
+//		System.out.println(reqSummary[3]);
 	}
 
 	public boolean validateSummary(String sever, String catog) throws NoSuchElementException {
